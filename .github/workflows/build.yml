@@ -1,0 +1,26 @@
+name: Build and Test Clicker Logic
+
+# first, when does the test run?
+on:
+  push:
+    branches: [ "main" ]
+
+# okay, now we'll do this on a fresh linux environment...
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    # grab a copy of the code to use, first of all
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    # now lets get node js so we can run javascript.
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '24'
+
+    # now run the tests brah
+    - name: Run Clicker Logic Tests
+      run: node test.js
